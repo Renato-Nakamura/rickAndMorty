@@ -14,7 +14,7 @@ export const createUser = (userName, password, route) => {
 export const getUser = (userName, password, route) => {
   const user = users.find((user) => user.userName == userName)
   if (!user) {
-    console.log('erro Usuário não encontrado')
+    console.log('erro Usuário não encontrado', user)
     return { message: 'Usuário não encontrado' }
   }
 
@@ -29,5 +29,21 @@ export const getUser = (userName, password, route) => {
 }
 
 export const isLogged = () => {
+  if (!users.length) {
+    localStorage.removeItem('userRaM')
+    return null
+  }
   return JSON.parse(localStorage.getItem('userRaM'))
+}
+
+export const addFavorite = (charId) => {
+  const user = isLogged()
+  const index = users.findIndex((u) => u.userName == user.userName)
+  console.log(index, users[index].favorites.includes(charId))
+  if (users[index].favorites.includes(charId)) console.log('já tem')
+  if (index > -1) users[index].favorites.push(charId)
+  console.log(users[index])
+  localStorage.setItem('userRaM', JSON.stringify(users[index]))
+
+  return users[index]
 }

@@ -1,15 +1,22 @@
 <template>
   <div>
-    <h2>Personagem {{ character? character.name:""}}</h2>
-    <img :src="character.image" alt="">
-    <span>{{character.gender}}</span>
-    <span>{{character.status}}</span>
-    <span>{{character.origin?.name}}</span>
+    <h2>Personagem {{ character ? character.name : '' }}</h2>
+    <img :src="character.image" alt="" />
+    <span>{{ character.gender }}</span>
+    <span>{{ character.status }}</span>
+    <span>{{ character.origin?.name }}</span>
+    <div>
+      <div v-if="user" @click="user = addFavorite(id)">
+        <div v-if="user.favorites.includes(id)">⭐</div>
+        <div v-else>✰</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import gql from 'graphql-tag'
+import { isLogged, addFavorite } from '~/services/userService'
 // const CHARACTER = gql`
 //   query {
 //     character(id: 4) {
@@ -22,12 +29,17 @@ export default {
   data() {
     return {
       id: String,
-      character:Object
+      character: {},
+      user:Object
     }
+  },
+  methods:{
+    addFavorite
   },
   beforeMount() {
     console.log(this.$route.params.id, this.$apollo.query)
     this.id = this.$route.params.id
+    this.user = isLogged()
     // this.$apollo.queries.findCharacter.refresh()
   },
   apollo: {
@@ -36,14 +48,14 @@ export default {
     // },
     findCharacter: {
       query: gql`
-        query getCharacter($idDoPersonagem: ID!){
+        query getCharacter($idDoPersonagem: ID!) {
           character(id: $idDoPersonagem) {
             name
             image
             status
             gender
-            origin{
-                name
+            origin {
+              name
             }
           }
         }
