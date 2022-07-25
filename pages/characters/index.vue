@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Personagens</h1>
-    <div v-if="characters" class="flex gap-5 flex-wrap">
+    <h1 class="text-xl">Personagens</h1>
+    <div v-if="characters" class="flex gap-5 flex-wrap justify-center">
       <div v-for="character in characters.results" >
         <HomeCard :character="character" :key="character.id"/>
       </div>

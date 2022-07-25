@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="bg-ram h-screen">
     <header class="flex justify-between p-3">
       <span>Rick and Morty Characters</span>
       <div>
-        <button>Login</button>
+        <NuxtLink to="/login"><button>Login</button></NuxtLink>
+        
         <button>Favorites</button>
       </div>
     </header>
@@ -14,3 +15,9 @@
 </template>
 
 <script></script>
+
+<style>
+.bg-ram{
+  background-color: var(--primary);
+}
+</style>
