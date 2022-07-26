@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Personagens favoritos</h1>
+    <h1 class="text-center text-xl mb-3 font-bold">Personagens favoritos</h1>
     <div>
       <div v-if="characters" class="flex gap-5 flex-wrap justify-center">
         <div v-for="character in characters">

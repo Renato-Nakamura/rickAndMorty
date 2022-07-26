@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-3xl text-center p-2">Personagens</h1>
+    <h1 class="text-xl text-center p-2 font-bold">Personagens</h1>
     <div v-if="characters" class="flex gap-5 flex-wrap justify-center">
       <div v-for="character in characters.results" >
         <HomeCard :character="character" :key="character.id" :favorites="user?user.favorites: []"/>

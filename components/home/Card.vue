@@ -4,7 +4,7 @@
     @click="$router.push(`/characters/${character.id}`)"
   >
     <img :src="character.image" alt="" />
-    <div>
+    <div class="flex gap-1">
       <div >
         <div v-if="favorites.includes(character.id)">⭐</div>
         <!-- <div v-else>Favoritar</div> -->

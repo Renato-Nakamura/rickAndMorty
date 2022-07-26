@@ -1,10 +1,19 @@
 <template>
-  <div>
+  <div class="flex flex-col m-auto items-center">
     <h2>Personagem {{ character ? character.name : '' }}</h2>
     <img :src="character.image" alt="" />
-    <span>{{ character.gender }}</span>
-    <span>{{ character.status }}</span>
-    <span>{{ character.origin?.name }}</span>
+    <div>
+      <strong>Gênero:</strong>
+      <span>{{ character.gender }}</span>
+    </div>
+    <div>
+      <strong>Status:</strong>
+      <span>{{ character.status }}</span>
+    </div>
+    <div>
+      <strong>Origem: </strong>
+      <span>{{ character.origin?.name }}</span>
+    </div>
     <div>
       <div v-if="user" @click="user = addFavorite(id)">
         <div v-if="user.favorites.includes(id)">⭐</div>
